@@ -23,7 +23,7 @@ $(function() {
             toggle(d);
           }
         }
-        //root.children.forEach(toggleAll);
+        root.children.forEach(toggleAll);
 
         update(root);
       });
