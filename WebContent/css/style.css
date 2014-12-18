@@ -111,11 +111,12 @@ path.link {
   left: 10px;
 }
 
-#input_data {
-  height: 33px;
-}
-
 #loading_gif {
   margin-left: 6px;
   display: none;
+}
+
+#show_button {
+  height: 53px;
+}
 }
