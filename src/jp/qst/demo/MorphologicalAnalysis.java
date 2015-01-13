@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
-
 import jp.qst.demo.been.JsonOutputDataParent;
 import net.java.sen.SenFactory;
 import net.java.sen.StringTagger;
 import net.java.sen.dictionary.Token;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.Gson;
 
@@ -57,7 +57,7 @@ public class MorphologicalAnalysis extends HttpServlet {
 		for (Token token : tokens) {
 			String tango = token.getSurface();
 			String hinsi = token.getMorpheme().getPartOfSpeech();
-			HashMap tangoList = hinsi_tangoList.get(hinsi);
+			HashMap<String,Integer> tangoList = hinsi_tangoList.get(hinsi);
 			// まだ存在しない品詞の場合
 			if (tangoList == null) {
 				// key:tango,value:cnt
@@ -102,6 +102,9 @@ public class MorphologicalAnalysis extends HttpServlet {
 			for (String tango : tangoList) {
 				JsonOutputDataParent tangoJson = new JsonOutputDataParent();
 				tangoJson.setName(tango);
+				// 出現回数を設定
+				int frequent = tangoListMap.get(tango);
+				tangoJson.setFrequent(frequent);
 				tangListJson.add(tangoJson);
 			}
 			// 品詞のリストに品詞名とJson用単語リストを格納
