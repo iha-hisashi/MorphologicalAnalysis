@@ -99,6 +99,17 @@ a:hover {
   font-size: 16px;
 }
 
+.node text.bigger {
+	font-weight: bold;
+	font-size: 32px;
+	fill: #ff0000;
+}
+
+.node text.smaller{
+	font-size: 6px;
+	fill: #666666;
+}
+
 path.link {
   fill: none;
   stroke: #ccc;
@@ -119,4 +130,4 @@ path.link {
 #show_button {
   height: 53px;
 }
-}
+
