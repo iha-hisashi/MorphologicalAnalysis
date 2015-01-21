@@ -1,8 +1,8 @@
 var create_rrt_tree = function() {
-var diameter = 1080;
+var diameter = 1800;
 
 var tree = d3.layout.tree()
-    .size([360, diameter / 2 - 120])
+    .size([360, diameter / 2 - 370])
     .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
 
 var diagonal = d3.svg.diagonal.radial()
@@ -12,25 +12,26 @@ var svg = d3.select("body").append("svg")
     .attr("width", diameter)
     .attr("height", diameter + 300)
   .append("g")
-    .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+    .attr("transform", "translate(" + diameter * 0.4 + "," + diameter / 2 + ")");
 
 d3.json("", function(error, root) {
-  local_json = okinawa;
-  root = local_json;
-  var nodes = tree.nodes(root);
-  var word_nums = nodes.length;
+  $.getJSON("../js/area_rrt_tree/okinawa.js", function(json) {
+	root = json;  
+
+  root.children = root.children.slice(0, 100);
   // 高レート順位の定義
-  var high_rate_rank = word_nums * 10 / 100;
+  var high_rate_rank = root.children.length * 10 / 100;
   // 低レート順位の定義
-  var low_rate_rank = word_nums * 90 / 100;
-  nodes = $.map(nodes, function(node, index){
-    node.rank = index + 1;
-    // 高レートならtrue
-    node.high_rate = !('children' in node) && node.rank <= high_rate_rank;
-    // 低レートならtrue
-    node.low_rate = !('children' in node) && node.rank > low_rate_rank;
-	return node;
-  });
+  var low_rate_rank = root.children.length * 90 / 100;
+  for (var i = 0; i < root.children.length; i++) {
+	  var node = root.children[i];
+	  node.rank = i + 1;
+	  // 高レートならtrue
+	  node.high_rate = (node.rank <= high_rate_rank);
+	  // 低レートならtrue
+	  node.low_rate = (node.rank > low_rate_rank);
+  }
+  var nodes = tree.nodes(root);
   var links = tree.links(nodes);
 
   var link = svg.selectAll(".link")
@@ -50,17 +51,20 @@ d3.json("", function(error, root) {
 
   node.append("text")
       .attr("dy", ".31em")
-      .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-      .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
-      .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
+      .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "start"; })
+      .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "translate(8)"; })
+      .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "translate(8)"; })
       .attr("class", function(n) {
-    	  if (n.high_rate) {
-    		  return "bigger";
-    	  } else if (n.low_rate) {
-    		  return "smaller";
-    	  }
+    	  return n.high_rate ? "bigger" : n.low_rate ? "smaller" : "";
       })
-      .text(function(d) { return d.word + " : " + d.tfidf; });
+      .attr("style", function(n) {
+    	 if (n.rank) {
+    		 var font_size = 32 - parseInt(n.rank / 10) * 3;
+    		 return "font-size : " + font_size + "px";
+    	 }
+      })
+      .text(function(d) { return d.word + (d.tfidf ? " : " + d.tfidf : ""); });
+  });
 });
 
 d3.select(self.frameElement).style("height", diameter - 150 + "px");

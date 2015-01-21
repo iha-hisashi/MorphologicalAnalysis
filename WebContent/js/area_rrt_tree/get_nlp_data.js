@@ -3,7 +3,7 @@ $(function() {
   var get_nlp_data = function(input_data) {
     $.ajax(
       {
-        url: "/MorphologicalAnalysis",
+        url: "/MorphologicalAnalysis" + (location.host.match("localhost") ? "/MorphologicalAnalysis" : ""),
         type: "POST",
         data: { "input_data" :  input_data },
         dataType: "json"
