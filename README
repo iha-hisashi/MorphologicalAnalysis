@@ -1,0 +1,18 @@
+[概要]
+Eclipseの動的プロジェクトで作成.
+以下の2つのページを提供します.
+1. http://localhost:8080/MorphologicalAnalysis/html/rrt_tree.html
+2. http://localhost:8080/MorphologicalAnalysis/html/area_rrt_tree.html
+
+[ページ概要]
+1. 入力されたテキストを形態素解析して結果を表出.
+   名詞に絞っているので, ある程度長い文章じゃないと面白くありません.
+
+2. 日本地図から都道府県を選択.
+   あらかじめ用意したTF-IDFデータを表出.
+   テストデータはpythonで作成.
+   https://github.com/hoshito-taira/mecab_test
+
+[その他]
+日本地図は, MITライセンスで公開されているライブラリを使用しました.
+https://github.com/takemaru-hirai/japan-map

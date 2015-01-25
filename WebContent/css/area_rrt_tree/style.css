@@ -1,9 +1,13 @@
 body {
   background: url(texture-noise.png);
-  overflow: hidden;
+  //overflow: hidden;
   margin: 0;
   font-size: 14px;
   font-family: "Helvetica Neue", Helvetica;
+}
+
+#body {
+  padding-top: 30px;
 }
 
 #chart, #header, #footer {
@@ -31,9 +35,8 @@ body {
 }
 
 #footer {
-  top: 680px;
-  right: 140px;
-  text-align: right;
+  top: 10px;
+  left: 10px;
 }
 
 rect {
@@ -81,31 +84,50 @@ a:hover {
 }
 
 .hint {
-  position: absolute;
-  right: 0;
-  width: 1280px;
   font-size: 12px;
   color: #999;
 }
 
-path.arc {
-  cursor: move;
-  fill: #fff;
-}
-
 .node circle {
+  cursor: pointer;
   fill: #fff;
   stroke: steelblue;
   stroke-width: 1.5px;
 }
 
-.node {
-  font-size: 10px;
-  pointer-events: none;
+.node text {
+  font-size: 16px;
 }
 
-.link {
+.node text.bigger {
+	font-weight: bold;
+	font-size: 32px;
+	fill: #ff0000;
+}
+
+.node text.smaller{
+	font-size: 6px;
+	fill: #666666;
+}
+
+path.link {
   fill: none;
   stroke: #ccc;
-  stroke-width: 1.5px;
+  stroke-width: 3.5px;
 }
+
+#input_field {
+  position: absolute;
+  top: 70px;
+  left: 10px;
+}
+
+#loading_gif {
+  margin-left: 6px;
+  display: none;
+}
+
+#show_button {
+  height: 53px;
+}
+

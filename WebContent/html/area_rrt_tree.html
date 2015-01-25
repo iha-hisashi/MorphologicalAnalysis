@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <link type="text/css" rel="stylesheet" href="../css/tree/style.css"/>
-    <script type="text/javascript" src="../js/tree/d3.js"></script>
-    <script type="text/javascript" src="../js/tree/d3.layout.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/area_rrt_tree/style.css"/>
+    <script type="text/javascript" src="../js/area_rrt_tree/d3.js"></script>
+    <script type="text/javascript" src="../js/area_rrt_tree/d3.layout.js"></script>
     <script type="text/javascript" src="../js/local_json.js"></script>
     <script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
     <!-- Latest compiled and minified CSS -->
@@ -14,7 +14,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="../js/bootstrap.min.js"></script>
   </head>
-  <body>
+  <body style="height:1000px">
   <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -25,25 +25,20 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">d3.layout.tree</a>
+      <a class="navbar-brand" href="#">TF-IDF</a>
+      <a id="map_link" class="navbar-brand" href="#"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Map</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <textarea id="input_data" class="form-control" rows="2" cols="60" placeholder="Input Data"></textarea>
-        </div>
-        <button id="show_button" class="form-control"  type="button" class="btn btn-default">
-          <span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span> show!
-        </button>
-      </form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-    <div id="body">
-    </div>
-    <script type="text/javascript" src="../js/tree/init.js"></script>
-    <script type="text/javascript" src="../js/tree/get_nlp_data.js"></script>
+    <div id="map_body" style="margin-top:20px;margin-left:20px"></div>
+    <div id="svg_body" style="display:none"></div>
+    <script type="text/javascript" src="../js/area_rrt_tree/jquery.japan-map.min.js"></script>
+    <script type="text/javascript" src="../js/area_rrt_tree/init.js"></script>
+    <script>
+    </script>
   </body>
 </html>
